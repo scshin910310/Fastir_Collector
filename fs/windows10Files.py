@@ -25,6 +25,10 @@ class Windows10Files(_FS):
         return super(Windows10Files, self)._firefox_history(
             '\\Users\\*\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\*.default\\places.sqlite')
 
+    def _safari_history(self):
+        return super(Windows10Files,self)._safari_history(
+            '\\Users\\*\\AppData\\Roaming\\Apple Computer\\Safari\\History.plist')
+
     def csv_print_list_named_pipes(self):
         super(Windows10Files, self)._csv_list_named_pipes(self._list_named_pipes())
 
