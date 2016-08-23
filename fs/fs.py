@@ -229,8 +229,8 @@ class _FS(object):
     
     def _safari_history(self, path):
         path = os.path.join(self.systemroot, path)
-        tmp = open(path+"/history.plist","rb")
-        tmp2 = open("output/history.plist","wb")
+        tmp = open(path,"rb")
+        tmp2 = open("output/Safari_History.plist","wb")
         tmp2.write(tmp.read())
         tmp.close()
         tmp2.close()
