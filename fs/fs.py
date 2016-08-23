@@ -229,17 +229,12 @@ class _FS(object):
     
     def _safari_history(self, path):
         path = os.path.join(self.systemroot, path)
-        for p in glob.glob(path):
-            p_tokens = p.split('\\')
-            user = p_tokens[2]
-            profile = p_tokens[len(p_tokens) - 2]
-            con = sqlite3.connect(p)
-            cur = con.cursor()
-            for time, url, title in cur.execute(
-                    ('SELECT datetime(((visits.visit_time/1000000)-11644473600), "unixepoch"), '
-                     'urls.url, urls.title FROM urls, visits WHERE urls.id = visits.url;')):
-                yield time, url, title, user, profile            
-
+        tmp = open(path+"/history.plist","rb")
+        tmp2 = open("output/history.plist","wb")
+        tmp2.write(tmp.read())
+        tmp.close()
+        tmp2.close()
+        
     def _csv_list_named_pipes(self, pipes):
         with open(self.output_dir + '\\' + self.computer_name + '_named_pipes' + self.rand_ext, 'wb') as output:
             csv_writer = get_csv_writer(output)
